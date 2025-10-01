@@ -1,0 +1,146 @@
+// Mock data and utilities for portfolio
+
+export const contactFormMock = {
+  submit: async (formData) => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Mock successful submission
+    console.log('Mock contact form submission:', formData);
+    return {
+      success: true,
+      message: 'Thanks — I\'ll respond within 48 hours.'
+    };
+  }
+};
+
+export const resumeUrl = 'https://customer-assets.emergentagent.com/job_aiml-portfolio-10/artifacts/bkinet1z_Prem.%20B%20-%20Resume.pdf';
+
+export const socialLinks = {
+  github: 'https://github.com/11prem',
+  linkedin: 'http://linkedin.com/in/premb2004',
+  email: 'prem112004@gmail.com',
+  phone: '+91 8056187431'
+};
+
+export const personalInfo = {
+  name: 'Prem B',
+  location: 'Chengalpattu, Tamil Nadu, India',
+  taglines: {
+    short: 'Engineering AI systems and real-time mobile apps.',
+    recruiter: 'B.Tech CSE student — Google Developers & ISRO internships, production focus.',
+    technical: 'Building production-grade ML systems, real-time dashboards, and Android apps (Flutter).'
+  },
+  subtitle: 'Mobile App Developer, AI/ML Engineer, Full-Stack Developer',
+  about: 'Computer Science & Engineering undergrad (B.Tech, CGPA 8.79). I build production-ready systems combining mobile apps, real-time backends, and ML models. Recent internships: Google Developers (AI/ML), ISRO ISTRAC (Full-Stack), ISRO SDSC (AI & Robotics). I focus on measurable outcomes: data latency reduction, production dashboards, and reliable mobile integrations.'
+};
+
+export const skills = {
+  'Programming Languages': ['Python', 'Java', 'JavaScript', 'Dart (Flutter)'],
+  'Database': ['SQL', 'NoSQL - Firebase'],
+  'Web & Full-Stack': ['Flask', 'Dash', 'RESTful APIs', 'HTML/CSS', 'UDP', 'Real-time Data Acquisition'],
+  'AI/ML & Data Analytics': ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV', 'Pandas', 'Matplotlib', 'CNNs', 'RNNs', 'Reinforcement Learning'],
+  'DevOps & Cloud': ['AWS', 'CI/CD (GitHub Actions)', 'Virtual Environments', 'ELK Stack'],
+  'Web Technology': ['Next.js', 'Tailwind CSS', 'GitHub Actions', 'Vercel / S3+CloudFront', 'Accessibility testing', 'Lighthouse optimization']
+};
+
+export const projects = [
+  {
+    id: 'aarcs',
+    title: 'AARCS — Ambulance Route Clearance System',
+    summary: 'Real-time ambulance routing & notification system (mobile + backend).',
+    bullets: [
+      'Real-time GPS + Google Maps API for live ambulance tracking.',
+      'WebSocket telemetry between driver app and admin dashboard for low-latency updates.',
+      'CI/CD with GitHub Actions for build & deployment.'
+    ],
+    tech: ['Flutter (Android)', 'Flask', 'Flask-SocketIO', 'Firebase', 'AWS', 'GitHub Actions'],
+    github: 'https://github.com/11prem/AARCS-AMBULANCE',
+    demo: null,
+    image: 'https://images.unsplash.com/photo-1625217527288-93919c99650a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBncHMlMjB0cmFja2luZ3xlbnwwfHx8fDE3NTkzMjkzNzh8MA&ixlib=rb-4.1.0&q=85'
+  },
+  {
+    id: 'google-analytics',
+    title: 'Analytics Visualization — Google Developers',
+    summary: 'Dash-based analytics suite for large-scale datasets and stakeholder reporting.',
+    bullets: [
+      'Cleaned & normalized 8 large datasets, uncovering +12% more relevant trends.',
+      'Built interactive Dash dashboards reducing stakeholder analysis time by ~30%.',
+      'Produced technical report & walkthrough adopted by global teams.'
+    ],
+    tech: ['Python', 'Dash', 'SQL', 'Plotly'],
+    github: null,
+    demo: null,
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc1OTMyOTM4NHww&ixlib=rb-4.1.0&q=85'
+  },
+  {
+    id: 'telemetry',
+    title: 'Telemetry Dashboard — ISRO ISTRAC',
+    summary: 'Mission telemetry dashboard converting binary telemetry streams to live visual logs.',
+    bullets: [
+      'Engineered binary→JSON ingestion and low-latency REST + WebSocket APIs.',
+      'Reduced telemetry latency from 5s to 2s and automated data-prep, cutting labor by ~60%.',
+      'Integrated ELK for centralized logging (improved debugging speed ~40%).'
+    ],
+    tech: ['Python', 'Flask', 'SQL', 'WebSockets', 'ELK'],
+    github: null,
+    demo: null,
+    image: 'https://images.pexels.com/photos/3582392/pexels-photo-3582392.jpeg'
+  },
+  {
+    id: 'robotics',
+    title: 'AI & Robotics — ISRO SDSC (research)',
+    summary: 'Robotic Arm Manipulator (simulation research).',
+    bullets: [
+      'Designed and simulated robotic-arm workflows in PyBullet + OpenCV, achieving a 92% pick-and-place success rate (simulation).',
+      'Trained RL agents (PPO & DQN), improving assembly precision by 15% (simulation).',
+      'Documented system architecture and delivered training to a 5-member team.'
+    ],
+    tech: ['PyBullet', 'OpenCV', 'NumPy', 'Reinforcement Learning'],
+    github: null,
+    demo: null,
+    image: 'https://images.unsplash.com/photo-1751554933476-d029737d58b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwzfHxyb2JvdGljJTIwYXJtJTIwQUl8ZW58MHx8fHwxNzU5MzI5Mzk1fDA&ixlib=rb-4.1.0&q=85'
+  },
+  {
+    id: 'portfolio',
+    title: 'Portfolio Website — This Site',
+    summary: 'Recruiter-focused portfolio site showcasing mobile, real-time, and ML projects — React + Tailwind + Canvas.',
+    bullets: [
+      'Minimal, aesthetic UI with animated background, light/dark modes, accessible components and resume download.',
+      'SEO & performance-first: meta tags, lazy-loaded assets, optimized images.',
+      'Responsive design with micro-interactions and smooth animations throughout.'
+    ],
+    tech: ['React', 'Tailwind CSS', 'Canvas API', 'React Router', 'Lucide Icons'],
+    github: null,
+    demo: null,
+    image: null
+  }
+];
+
+export const experience = [
+  {
+    company: 'Google Developers',
+    role: 'AI/ML Intern',
+    period: 'Apr 2025 – May 2025',
+    description: 'Cleaned & normalized 8 large datasets; developed a Dash visualization suite reducing stakeholder analysis time by 30%; produced a 20-slide technical report and a 10-minute walkthrough adopted by 3 global teams.'
+  },
+  {
+    company: 'ISRO ISTRAC',
+    role: 'Full-Stack Intern',
+    period: 'Jan 2025 – Feb 2025',
+    description: 'Implemented NavIC Ranging Data Monitoring microservices; engineered binary-to-JSON ingestion and dynamic filtering; reduced data latency from 5s to 2s; integrated ELK for centralized logging.'
+  },
+  {
+    company: 'ISRO SDSC',
+    role: 'AI & Robotics Intern',
+    period: 'Sep 2024 – Oct 2024',
+    description: 'R&D simulation work (PyBullet + OpenCV) for a robotic arm.'
+  }
+];
+
+export const education = {
+  degree: 'B.Tech, Computer Science & Engineering',
+  period: '2022 - 2026',
+  institution: 'Bharath Institute of Science and Technology',
+  cgpa: '8.79'
+};
