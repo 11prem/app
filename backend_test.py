@@ -127,6 +127,145 @@ class BackendTester:
         except Exception as e:
             self.log_test("POST /api/contact (valid)", False, "Unexpected error", str(e))
 
+    def test_email_functionality_specific(self):
+        """Test the specific email functionality as requested"""
+        print("\n🧪 Testing Email Functionality with Specific Test Data...")
+        
+        # Use the exact test data from the review request
+        test_data = {
+            "name": "Test User",
+            "email": "test@example.com",
+            "subject": "Testing Email Delivery",
+            "message": "This is a test message to verify that emails are being sent properly via Gmail SMTP to prem112004@gmail.com."
+        }
+        
+        try:
+            print(f"📧 Sending test email with data: {test_data}")
+            
+            response = requests.post(
+                f"{API_BASE_URL}/contact",
+                json=test_data,
+                headers={'Content-Type': 'application/json'},
+                timeout=20  # Longer timeout for email processing
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                expected_response = {
+                    "success": True,
+                    "message": "Thanks — I'll respond within 48 hours."
+                }
+                
+                if data == expected_response:
+                    self.log_test("Email Test - API Response", True, "API returned success response")
+                    
+                    # Verify MongoDB storage for this specific test
+                    if self.db is not None:
+                        self.verify_email_test_storage(test_data)
+                    
+                    # Check backend logs for email confirmation
+                    self.check_email_logs()
+                    
+                else:
+                    self.log_test("Email Test - API Response", False, f"Unexpected response: {data}")
+            else:
+                self.log_test("Email Test - API Response", False, f"HTTP {response.status_code}: {response.text}")
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Email Test - API Response", False, "Request failed", str(e))
+        except Exception as e:
+            self.log_test("Email Test - API Response", False, "Unexpected error", str(e))
+
+    def verify_email_test_storage(self, test_data):
+        """Verify that the email test submission was stored in MongoDB"""
+        print("\n🧪 Verifying Email Test MongoDB Storage...")
+        
+        try:
+            # Find the most recent submission with matching test data
+            submission = self.db.contact_submissions.find_one(
+                {
+                    "email": test_data["email"],
+                    "subject": test_data["subject"]
+                },
+                sort=[("timestamp", -1)]
+            )
+            
+            if submission:
+                # Check required fields
+                required_fields = ['id', 'name', 'email', 'subject', 'message', 'timestamp', 'status']
+                missing_fields = [field for field in required_fields if field not in submission]
+                
+                if not missing_fields:
+                    # Verify data matches
+                    if (submission['name'] == test_data['name'] and 
+                        submission['email'] == test_data['email'] and
+                        submission['subject'] == test_data['subject'] and
+                        submission['message'] == test_data['message']):
+                        
+                        self.log_test("Email Test - MongoDB Storage", True, f"Email test submission stored correctly with ID: {submission['id']}")
+                        print(f"   📝 Status: {submission.get('status', 'N/A')}")
+                        print(f"   🕐 Timestamp: {submission.get('timestamp', 'N/A')}")
+                        
+                        # Check if email was marked as sent or failed
+                        if submission.get('status') == 'sent':
+                            self.log_test("Email Test - Email Status", True, "Email marked as 'sent' in database")
+                        elif submission.get('status') == 'failed':
+                            self.log_test("Email Test - Email Status", False, "Email marked as 'failed' in database")
+                        else:
+                            self.log_test("Email Test - Email Status", False, f"Email status is '{submission.get('status')}' (expected 'sent' or 'failed')")
+                            
+                    else:
+                        self.log_test("Email Test - MongoDB Storage", False, "Stored data doesn't match submitted data")
+                else:
+                    self.log_test("Email Test - MongoDB Storage", False, f"Missing required fields: {missing_fields}")
+            else:
+                self.log_test("Email Test - MongoDB Storage", False, "No matching email test submission found in database")
+                
+        except Exception as e:
+            self.log_test("Email Test - MongoDB Storage", False, "Database verification failed", str(e))
+
+    def check_email_logs(self):
+        """Check backend logs for email sending confirmation or errors"""
+        print("\n🧪 Checking Backend Logs for Email Status...")
+        
+        try:
+            import subprocess
+            
+            # Get recent backend logs
+            result = subprocess.run(
+                ["tail", "-n", "20", "/var/log/supervisor/backend.err.log"],
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+            
+            if result.returncode == 0:
+                log_content = result.stdout
+                
+                # Look for email success messages
+                if "Email sent successfully" in log_content:
+                    self.log_test("Email Test - Backend Logs", True, "Found 'Email sent successfully' in logs")
+                elif "Failed to send email" in log_content or "Connection error" in log_content:
+                    self.log_test("Email Test - Backend Logs", False, "Found email sending errors in logs")
+                    # Extract specific error details
+                    lines = log_content.split('\n')
+                    for line in lines:
+                        if "Failed to send email" in line or "Connection error" in line:
+                            print(f"   🚨 Error: {line.strip()}")
+                else:
+                    self.log_test("Email Test - Backend Logs", False, "No email status messages found in recent logs")
+                    
+                print(f"   📋 Recent log entries:")
+                for line in log_content.split('\n')[-5:]:
+                    if line.strip():
+                        print(f"   {line.strip()}")
+                        
+            else:
+                self.log_test("Email Test - Backend Logs", False, "Could not read backend logs")
+                
+        except Exception as e:
+            self.log_test("Email Test - Backend Logs", False, "Log check failed", str(e))
+
     def verify_contact_submission_storage(self, test_data):
         """Verify that contact submission was stored in MongoDB"""
         print("\n🧪 Verifying MongoDB storage...")
