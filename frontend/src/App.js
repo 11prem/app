@@ -12,7 +12,7 @@ import Education from './sections/Education';
 import Resume from './sections/Resume';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
-import { Toaster } from './components/ui/sonner';
+import { Toaster } from './components/ui/toaster';
 
 const Portfolio = () => {
   return (
