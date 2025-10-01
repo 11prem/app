@@ -158,12 +158,15 @@ backend:
     working: true
     file: "backend/email_service.py"
     stuck_count: 0
-    priority: "medium"
+    priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "testing"
         comment: "Minor: Email service shows connection errors to Emergent API but doesn't prevent contact form submission. Core functionality works - submissions are stored and API returns success response"
+      - working: true
+        agent: "testing"
+        comment: "✅ Email functionality now working perfectly! Gmail SMTP integration successful. Test confirmed: API returns success, MongoDB storage working, backend logs show 'Email sent successfully', 'Contact notification sent', and 'Auto-reply sent'. Both notification email to prem112004@gmail.com and auto-reply to submitter are being sent successfully via Gmail SMTP. No SMTP connection errors found."
 
 frontend:
   # No frontend testing performed as per instructions
