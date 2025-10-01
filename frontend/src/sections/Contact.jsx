@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { socialLinks, contactFormMock } from '../utils/mock';
+import { socialLinks } from '../utils/mock';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Card } from '../components/ui/card';
 import { useToast } from '../hooks/use-toast';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const Contact = () => {
   const { toast } = useToast();
