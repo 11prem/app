@@ -234,7 +234,7 @@ class BackendTester:
         """Test MongoDB collections structure"""
         print("\n🧪 Testing MongoDB collections...")
         
-        if not self.db:
+        if self.db is None:
             self.log_test("MongoDB Collections", False, "No database connection available")
             return
             
