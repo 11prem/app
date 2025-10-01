@@ -405,6 +405,7 @@ class BackendTester:
         # Test all endpoints
         self.test_root_endpoint()
         self.test_contact_form_valid()
+        self.test_email_functionality_specific()  # New email-specific test
         self.test_contact_form_validation_errors()
         self.test_mongodb_collections()
         
