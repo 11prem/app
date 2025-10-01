@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -10,6 +10,8 @@ from typing import List
 import uuid
 from datetime import datetime
 
+from models import ContactSubmission, ContactSubmissionCreate, ContactSubmissionResponse
+from email_service import EmailService
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -18,6 +20,9 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+
+# Email service
+email_service = EmailService()
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -51,6 +56,50 @@ async def create_status_check(input: StatusCheckCreate):
 async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
+
+@api_router.post("/contact", response_model=ContactSubmissionResponse)
+async def submit_contact_form(submission: ContactSubmissionCreate):
+    """
+    Handle contact form submission.
+    Stores submission in MongoDB and sends email notification.
+    """
+    try:
+        # Create contact submission object
+        contact_obj = ContactSubmission(**submission.dict())
+        
+        # Store in MongoDB
+        await db.contact_submissions.insert_one(contact_obj.dict())
+        logger.info(f"Contact submission stored: {contact_obj.id}")
+        
+        # Send email notifications
+        email_sent = await email_service.send_contact_notification(contact_obj.dict())
+        
+        # Send auto-reply to submitter
+        await email_service.send_auto_reply(contact_obj.dict())
+        
+        # Update status in database
+        if email_sent:
+            await db.contact_submissions.update_one(
+                {"id": contact_obj.id},
+                {"$set": {"status": "sent"}}
+            )
+        else:
+            await db.contact_submissions.update_one(
+                {"id": contact_obj.id},
+                {"$set": {"status": "failed"}}
+            )
+        
+        return ContactSubmissionResponse(
+            success=True,
+            message="Thanks — I'll respond within 48 hours."
+        )
+        
+    except Exception as e:
+        logger.error(f"Error processing contact form: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail="Message failed to send. Try again."
+        )
 
 # Include the router in the main app
 app.include_router(api_router)
