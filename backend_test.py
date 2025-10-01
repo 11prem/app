@@ -115,7 +115,7 @@ class BackendTester:
                     self.log_test("POST /api/contact (valid)", True, "Returns correct success response")
                     
                     # Verify MongoDB storage
-                    if self.db:
+                    if self.db is not None:
                         self.verify_contact_submission_storage(test_data)
                 else:
                     self.log_test("POST /api/contact (valid)", False, f"Unexpected response: {data}")
