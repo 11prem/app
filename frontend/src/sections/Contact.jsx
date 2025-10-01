@@ -64,12 +64,12 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await contactFormMock.submit(formData);
+      const response = await axios.post(`${API}/contact`, formData);
       
-      if (response.success) {
+      if (response.data.success) {
         toast({
           title: "Message sent!",
-          description: response.message,
+          description: response.data.message,
           duration: 5000,
         });
         
@@ -84,7 +84,7 @@ const Contact = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Message failed to send. Try again.",
+        description: error.response?.data?.detail || "Message failed to send. Try again.",
         variant: "destructive",
         duration: 5000,
       });
