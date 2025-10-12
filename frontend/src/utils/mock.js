@@ -120,21 +120,21 @@ export const projects = [
 export const experience = [
   {
     company: 'Google Developers',
-    role: 'AI/ML Intern',
+    role: 'Machine Learning Engineer Intern',
     period: 'Apr 2025 – May 2025',
-    description: 'Cleaned & normalized 8 large datasets; developed a Dash visualization suite reducing stakeholder analysis time by 30%; produced a 20-slide technical report and a 10-minute walkthrough adopted by 3 global teams.'
+    description: 'Cleaned and normalized eight large datasets, developed an interactive Dash visualization suite, and delivered technical documentation and video walkthroughs used by three global teams to uncover content trends.'
   },
   {
     company: 'ISRO ISTRAC',
-    role: 'Full-Stack Intern',
+    role: 'Software Engineer Intern',
     period: 'Jan 2025 – Feb 2025',
-    description: 'Implemented NavIC Ranging Data Monitoring microservices; engineered binary-to-JSON ingestion and dynamic filtering; reduced data latency from 5s to 2s; integrated ELK for centralized logging.'
+    description: 'Built a real-time telemetry dashboard using Flask and SQL for launch data, automated binary-to-JSON data ingestion and query filtering, and integrated the ELK stack for centralized logging, reducing latency and improving error analysis speed.'
   },
   {
     company: 'ISRO SDSC',
-    role: 'AI & Robotics Intern',
+    role: 'AI and Robotics Intern',
     period: 'Sep 2024 – Oct 2024',
-    description: 'R&D simulation work (PyBullet + OpenCV) for a robotic arm.'
+    description: 'Designed and simulated robotic-arm workflows in PyBullet and OpenCV, trained PPO and DQN reinforcement learning agents, and documented architecture while conducting hands-on training for a team of five to optimize assembly precision.'
   }
 ];
 
@@ -142,5 +142,5 @@ export const education = {
   degree: 'B.Tech, Computer Science & Engineering',
   period: '2022 - 2026',
   institution: 'Bharath Institute of Science and Technology',
-  cgpa: '8.79'
+  cgpa: '8.81'
 };
