@@ -32,7 +32,7 @@ export const personalInfo = {
     technical: 'Building production-grade ML systems, real-time dashboards, and Android apps (Flutter).'
   },
   subtitle: 'Mobile App Developer, AI/ML Engineer, Full-Stack Developer',
-  about: 'Computer Science & Engineering undergrad (B.Tech, CGPA 8.79). I build production-ready systems combining mobile apps, real-time backends, and ML models. Recent internships: Google Developers (AI/ML), ISRO ISTRAC (Full-Stack), ISRO SDSC (AI & Robotics). I focus on measurable outcomes: data latency reduction, production dashboards, and reliable mobile integrations.'
+  about: 'Computer Science & Engineering undergrad (B.Tech, CGPA 8.81). I build production-ready systems combining mobile apps, real-time backends, and ML models. Recent internships: Google Developers (AI/ML), ISRO ISTRAC (Full-Stack), ISRO SDSC (AI & Robotics). I focus on measurable outcomes: data latency reduction, production dashboards, and reliable mobile integrations.'
 };
 
 export const skills = {
@@ -138,9 +138,26 @@ export const experience = [
   }
 ];
 
-export const education = {
-  degree: 'B.Tech, Computer Science & Engineering',
-  period: '2022 - 2026',
-  institution: 'Bharath Institute of Science and Technology',
-  cgpa: '8.81'
-};
+export const education = [
+  {
+    degree: 'B.Tech, Computer Science & Engineering',
+    period: '2022 - 2026',
+    institution: 'Bharath Institute of Science and Technology',
+    cgpa: '8.81',
+    scoreLabel: 'CGPA'
+  },
+  {
+    degree: 'HSC – 12th',
+    period: '2021 - 2022',
+    institution: "St. Vincent's Mat. High. Sec. School",
+    cgpa: '74.5%',
+    scoreLabel: 'Score'
+  },
+  {
+    degree: 'SSLC – 10th',
+    period: '2019 - 2020',
+    institution: "St. Vincent's Mat. High. Sec. School",
+    cgpa: '81.6%',
+    scoreLabel: 'Score'
+  }
+];
