@@ -8,7 +8,7 @@ const About = () => {
     {
       icon: GraduationCap,
       title: 'Education',
-      value: 'B.Tech CSE, CGPA 8.79'
+      value: 'B.Tech CSE, CGPA 8.81'
     },
     {
       icon: Briefcase,

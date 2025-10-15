@@ -14,7 +14,7 @@ export const contactFormMock = {
   }
 };
 
-export const resumeUrl = 'https://customer-assets.emergentagent.com/job_aiml-portfolio-10/artifacts/bkinet1z_Prem.%20B%20-%20Resume.pdf';
+export const resumeUrl = "/Prem_B-Resume.pdf";
 
 export const socialLinks = {
   github: 'https://github.com/11prem',
@@ -41,7 +41,7 @@ export const skills = {
   'Web & Full-Stack': ['Flask', 'Dash', 'RESTful APIs', 'HTML/CSS', 'UDP', 'Real-time Data Acquisition'],
   'AI/ML & Data Analytics': ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV', 'Pandas', 'Matplotlib', 'CNNs', 'RNNs', 'Reinforcement Learning'],
   'DevOps & Cloud': ['AWS', 'CI/CD (GitHub Actions)', 'Virtual Environments', 'ELK Stack'],
-  'Web Technology': ['Next.js', 'Tailwind CSS', 'GitHub Actions', 'Vercel / S3+CloudFront', 'Accessibility testing', 'Lighthouse optimization']
+  'Web Technology': ['Next.js', 'Vanta.js', 'Tailwind CSS', 'GitHub Actions', 'Vercel / S3+CloudFront']
 };
 
 export const projects = [
