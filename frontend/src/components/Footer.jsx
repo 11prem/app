@@ -57,9 +57,6 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-center space-y-3">
-            <p className="text-gray-400 text-sm">
-              © {currentYear} Prem B. All rights reserved.
-            </p>
             <p className="text-gray-500 text-sm">
               Open to internships & graduate roles
             </p>

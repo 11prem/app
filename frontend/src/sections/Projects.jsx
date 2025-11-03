@@ -6,8 +6,10 @@ import { Button } from '../components/ui/button';
 import { Github, ExternalLink, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
 
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
@@ -19,6 +21,7 @@ const Projects = () => {
             Production-ready systems combining mobile apps, real-time backends, and ML models
           </p>
         </div>
+
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
@@ -33,7 +36,9 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
+                      project.id === 'telemetry' || project.id === 'portfolio' ? 'object-top' : ''
+                    }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-800 via-transparent to-transparent opacity-60" />
                 </div>
@@ -44,12 +49,14 @@ const Projects = () => {
                 </div>
               )}
 
+
               {/* Project Content */}
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-200">
                   {project.title}
                 </h3>
                 <p className="text-gray-400 mb-4 line-clamp-2">{project.summary}</p>
+
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -68,6 +75,7 @@ const Projects = () => {
                     </Badge>
                   )}
                 </div>
+
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
@@ -103,6 +111,7 @@ const Projects = () => {
         </div>
       </div>
 
+
       {/* Project Details Modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <DialogContent className="bg-slate-800 border-slate-700 text-white max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -114,21 +123,26 @@ const Projects = () => {
                 </DialogTitle>
               </DialogHeader>
 
+
               {selectedProject.image && (
                 <div className="relative h-64 rounded-lg overflow-hidden mb-6">
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover ${
+                      selectedProject.id === 'telemetry' || selectedProject.id === 'portfolio' ? 'object-top' : ''
+                    }`}
                   />
                 </div>
               )}
+
 
               <div className="space-y-6">
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-3">Overview</h4>
                   <p className="text-gray-300 text-base leading-relaxed">{selectedProject.summary}</p>
                 </div>
+
 
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-3">Key Features & Achievements</h4>
@@ -141,6 +155,7 @@ const Projects = () => {
                     ))}
                   </ul>
                 </div>
+
 
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-3">Technologies Used</h4>
@@ -156,6 +171,7 @@ const Projects = () => {
                     ))}
                   </div>
                 </div>
+
 
                 {selectedProject.github && (
                   <div className="flex gap-3 pt-4">
@@ -176,5 +192,6 @@ const Projects = () => {
     </section>
   );
 };
+
 
 export default Projects;
