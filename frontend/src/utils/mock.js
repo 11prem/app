@@ -57,7 +57,7 @@ export const projects = [
     tech: ['Flutter (Android)', 'Flask', 'Flask-SocketIO', 'Firebase', 'AWS', 'GitHub Actions'],
     github: 'https://github.com/11prem/AARCS-AMBULANCE',
     demo: null,
-    image: 'https://images.unsplash.com/photo-1625217527288-93919c99650a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBncHMlMjB0cmFja2luZ3xlbnwwfHx8fDE3NTkzMjkzNzh8MA&ixlib=rb-4.1.0&q=85'
+    image: '/images/AARCS.png'
   },
   {
     id: 'google-analytics',
@@ -85,12 +85,12 @@ export const projects = [
     tech: ['Python', 'Flask', 'SQL', 'WebSockets', 'ELK'],
     github: null,
     demo: null,
-    image: 'https://images.pexels.com/photos/3582392/pexels-photo-3582392.jpeg'
+    image: '/images/Telemetry_Dashboard.png'
   },
   {
     id: 'robotics',
-    title: 'AI & Robotics — ISRO SDSC (research)',
-    summary: 'Robotic Arm Manipulator (simulation research).',
+    title: 'AI & Robotics — ISRO SDSC',
+    summary: 'Robotic Arm Manipulator (simulation).',
     bullets: [
       'Designed and simulated robotic-arm workflows in PyBullet + OpenCV, achieving a 92% pick-and-place success rate (simulation).',
       'Trained RL agents (PPO & DQN), improving assembly precision by 15% (simulation).',
@@ -99,7 +99,7 @@ export const projects = [
     tech: ['PyBullet', 'OpenCV', 'NumPy', 'Reinforcement Learning'],
     github: null,
     demo: null,
-    image: 'https://images.unsplash.com/photo-1751554933476-d029737d58b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwzfHxyb2JvdGljJTIwYXJtJTIwQUl8ZW58MHx8fHwxNzU5MzI5Mzk1fDA&ixlib=rb-4.1.0&q=85'
+    image: '/images/Robotic_Arm_Manipulator.png'
   },
   {
     id: 'portfolio',
@@ -113,7 +113,7 @@ export const projects = [
     tech: ['React', 'Tailwind CSS', 'Canvas API', 'React Router', 'Lucide Icons'],
     github: null,
     demo: null,
-    image: null
+    image: '/images/Portfolio_Website.png'
   }
 ];
 
