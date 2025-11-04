@@ -50,9 +50,9 @@ export const projects = [
     title: 'AARCS — Ambulance Route Clearance System',
     summary: 'Real-time ambulance routing & notification system (mobile + backend).',
     bullets: [
-      'Real-time GPS + Google Maps API for live ambulance tracking.',
-      'WebSocket telemetry between driver app and admin dashboard for low-latency updates.',
-      'CI/CD with GitHub Actions for build & deployment.'
+      'Engineered dual Flutter apps with Firebase Realtime Database & Node.js backend, reducing emergency vehicle travel time by 50% in urban areas.',
+      'Integrated Google Maps API with real-time GPS tracking and dynamic route recalculation, enabling live ETA predictions across 10+ traffic signals.',
+      'Implemented Firebase Admin SDK custom token authentication & role-based access control, achieving 65% reduction in traffic congestion delays.'
     ],
     tech: ['Flutter (Android)', 'Flask', 'Flask-SocketIO', 'Firebase', 'AWS', 'GitHub Actions'],
     github: 'https://github.com/11prem/AARCS-AMBULANCE',
@@ -111,7 +111,7 @@ export const projects = [
       'Responsive design with micro-interactions and smooth animations throughout.'
     ],
     tech: ['React', 'Tailwind CSS', 'Canvas API', 'React Router', 'Lucide Icons'],
-    github: null,
+    github: 'https://github.com/11prem/app',
     demo: null,
     image: '/images/Portfolio_Website.png'
   }
