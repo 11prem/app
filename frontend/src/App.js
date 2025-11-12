@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AnimatedBackground from './components/AnimatedBackground';
@@ -15,21 +15,29 @@ import Footer from './components/Footer';
 import { Toaster } from './components/ui/toaster';
 
 const Portfolio = () => {
+  // Wake up backend on page load
+  useEffect(() => {
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+    if (BACKEND_URL) {
+      fetch(BACKEND_URL)
+        .then(() => console.log('Backend warmed up'))
+        .catch(() => console.log('Backend warming up...'));
+    }
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-slate-900">
       <AnimatedBackground />
       <div className="relative z-10">
         <Header />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Education />
-          <Resume />
-          <Contact />
-        </main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Education />
+        <Resume />
+        <Contact />
         <Footer />
       </div>
       <Toaster />
@@ -39,13 +47,11 @@ const Portfolio = () => {
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Portfolio />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

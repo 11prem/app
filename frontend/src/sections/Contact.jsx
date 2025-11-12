@@ -11,6 +11,15 @@ import axios from 'axios';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+const fetchWithTimeout = (promise, timeout = 30000) => {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Request timeout')), timeout)
+    )
+  ]);
+};
+
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -55,43 +64,47 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  if (!validateForm()) {
+    return;
+  }
 
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await axios.post(`${API}/contact`, formData);
-      
-      if (response.data.success) {
-        toast({
-          title: "Message sent!",
-          description: response.data.message,
-          duration: 5000,
-        });
-        
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      }
-    } catch (error) {
+  setIsSubmitting(true);
+  try {
+    const response = await fetchWithTimeout(
+      axios.post(`${API}/contact`, formData),
+      30000
+    );
+    
+    if (response.data.success) {
       toast({
-        title: "Error",
-        description: error.response?.data?.detail || "Message failed to send. Try again.",
-        variant: "destructive",
+        title: "Message sent!",
+        description: response.data.message,
         duration: 5000,
       });
-    } finally {
-      setIsSubmitting(false);
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
     }
-  };
+  } catch (error) {
+    const errorMessage = error.message === 'Request timeout' 
+      ? "Request timed out. The server may be waking up, please try again."
+      : error.response?.data?.detail || "Message failed to send. Try again.";
+    
+    toast({
+      title: "Error",
+      description: errorMessage,
+      variant: "destructive",
+      duration: 5000,
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const contactInfo = [
     {
