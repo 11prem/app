@@ -13,16 +13,16 @@ const Education = () => {
       scoreLabel: 'CGPA'
     },
     {
-      degree: 'HSC – 12th',
-      institution: "St. Vincent's Mat. High. Sec. School",
-      period: '2021 - 2022',
+      degree: 'Intermediate (MPC)',
+      institution: "St. Vincent's. Mat. High. Sec. School",
+      period: '2020 - 2022',
       cgpa: '74.5%',
       icon: School,
       scoreLabel: 'Score'
     },
     {
-      degree: 'SSLC – 10th',
-      institution: "St. Vincent's Mat. High. Sec. School",
+      degree: 'State Board (SSLC)',
+      institution: "St. Vincent's. Mat. High. Sec. School",
       period: '2019 - 2020',
       cgpa: '81.6%',
       icon: School,

@@ -47,7 +47,7 @@ export const skills = {
 export const projects = [
   {
     id: 'aarcs',
-    title: 'AARCS — Ambulance Route Clearance System',
+    title: 'AARCS — Automated Ambulance Route Clearance System',
     summary: 'Real-time ambulance routing & notification system (mobile + backend).',
     bullets: [
       'Engineered dual Flutter apps with Firebase Realtime Database & Node.js backend, reducing emergency vehicle travel time by 50% in urban areas.',
@@ -75,7 +75,7 @@ export const projects = [
   },
   {
     id: 'telemetry',
-    title: 'Telemetry Dashboard — ISRO ISTRAC',
+    title: 'NavIC Ranging Data Monitoring System',
     summary: 'Mission telemetry dashboard converting binary telemetry streams to live visual logs.',
     bullets: [
       'Engineered binary→JSON ingestion and low-latency REST + WebSocket APIs.',
@@ -89,7 +89,7 @@ export const projects = [
   },
   {
     id: 'robotics',
-    title: 'AI & Robotics — ISRO SDSC',
+    title: 'Robotic Arm Manipulator using Reinforcement Learning',
     summary: 'Robotic Arm Manipulator (simulation).',
     bullets: [
       'Designed and simulated robotic-arm workflows in PyBullet + OpenCV, achieving a 92% pick-and-place success rate (simulation).',
@@ -111,7 +111,7 @@ export const projects = [
       'Responsive design with micro-interactions and smooth animations throughout.'
     ],
     tech: ['React', 'Tailwind CSS', 'Canvas API', 'React Router', 'Lucide Icons'],
-    github: 'https://github.com/11prem/app',
+    github: 'https://github.com/11prem/Portfolio-Website',
     demo: null,
     image: '/images/Portfolio_Website.png'
   }
@@ -147,16 +147,16 @@ export const education = [
     scoreLabel: 'CGPA'
   },
   {
-    degree: 'HSC – 12th',
-    period: '2021 - 2022',
-    institution: "St. Vincent's Mat. High. Sec. School",
+    degree: 'Intermediate (MPC)',
+    period: '2020 - 2022',
+    institution: "St. Vincent's. Mat. High. Sec. School",
     cgpa: '74.5%',
     scoreLabel: 'Score'
   },
   {
-    degree: 'SSLC – 10th',
+    degree: 'State Board (SSLC)',
     period: '2019 - 2020',
-    institution: "St. Vincent's Mat. High. Sec. School",
+    institution: "St. Vincent's. Mat. High. Sec. School",
     cgpa: '81.6%',
     scoreLabel: 'Score'
   }
