@@ -1,4 +1,5 @@
 // Mock data and utilities for portfolio
+import { Github, Linkedin, Mail, Phone } from 'lucide-react';
 
 export const contactFormMock = {
   submit: async (formData) => {
@@ -9,19 +10,35 @@ export const contactFormMock = {
     console.log('Mock contact form submission:', formData);
     return {
       success: true,
-      message: 'Thanks — I\'ll respond within 48 hours.'
+      message: 'Thanks — I\'ll respond within 24 hours.'
     };
   }
 };
 
 export const resumeUrl = "/Prem_B-Resume.pdf";
 
-export const socialLinks = {
-  github: 'https://github.com/11prem',
-  linkedin: 'http://linkedin.com/in/premb2004',
-  email: 'prem112004@gmail.com',
-  phone: '+91 8056187431'
-};
+export const socialLinks = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/11prem',
+    icon: Github
+  },
+  {
+    name: 'LinkedIn',
+    url: 'http://linkedin.com/in/premb2004',
+    icon: Linkedin
+  },
+  {
+    name: 'Email',
+    url: 'mailto:prem112004@gmail.com',
+    icon: Mail
+  },
+  {
+    name: 'Phone',
+    url: 'tel:+91 8056187431',
+    icon: Phone
+  }
+];
 
 export const personalInfo = {
   name: 'Prem B',
