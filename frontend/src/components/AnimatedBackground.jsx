@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from 'react';
 
 const AnimatedBackground = () => {
   const vantaRef = useRef(null);
+  const vantaEffect = useRef(null);
 
   useEffect(() => {
-    let vantaEffect = null;
     const isMobile = window.innerWidth < 768;
     
     const initVanta = () => {
-      if (window.VANTA && window.THREE) {
-        vantaEffect = window.VANTA.NET({
+      if (window.VANTA && window.THREE && vantaRef.current && !vantaEffect.current) {
+        vantaEffect.current = window.VANTA.NET({
           el: vantaRef.current,
           THREE: window.THREE,
           mouseControls: true,
@@ -21,12 +21,12 @@ const AnimatedBackground = () => {
           scaleMobile: 0.5,
           color: 0x02d3e6,
           backgroundColor: 0x0a192f,
-          points: isMobile ? 7.00 : 10.00,  // Reduced from 6/12 - LESS DENSE
-          maxDistance: isMobile ? 15.00 : 25.00,  // Reduced from 18/28 - FEWER CONNECTIONS
-          spacing: isMobile ? 25.00 : 20.00,  // Increased from 20/15 - MORE SPACE
+          points: isMobile ? 7.00 : 10.00,
+          maxDistance: isMobile ? 15.00 : 25.00,
+          spacing: isMobile ? 25.00 : 20.00,
           showDots: false
         });
-      } else {
+      } else if (!window.VANTA) {
         setTimeout(initVanta, 100);
       }
     };
@@ -34,8 +34,9 @@ const AnimatedBackground = () => {
     initVanta();
 
     return () => {
-      if (vantaEffect) {
-        vantaEffect.destroy();
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+        vantaEffect.current = null;
       }
     };
   }, []);
