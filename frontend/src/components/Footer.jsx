@@ -5,16 +5,21 @@ import { socialLinks, resumeUrl } from '../utils/mock';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  // Get social links from the array
+  const githubLink = socialLinks.find(link => link.name === 'GitHub');
+  const linkedinLink = socialLinks.find(link => link.name === 'LinkedIn');
+  const emailLink = socialLinks.find(link => link.name === 'Email');
+
   const footerLinks = [
     {
       icon: Github,
       label: 'GitHub',
-      href: socialLinks.github
+      href: githubLink?.url || '#'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: socialLinks.linkedin
+      href: linkedinLink?.url || '#'
     },
     {
       icon: Download,
@@ -24,44 +29,34 @@ const Footer = () => {
     {
       icon: Mail,
       label: 'Email',
-      href: `mailto:${socialLinks.email}`
+      href: emailLink?.url || 'mailto:prem112004@gmail.com'
     }
   ];
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-6xl">
+    <footer className="relative bg-slate-900 border-t border-slate-800 py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
           {/* Social Links */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {footerLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith('http') ? '_blank' : undefined}
-                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-800/50 hover:bg-cyan-500/10 border border-slate-700 hover:border-cyan-500/50 rounded-lg text-gray-300 hover:text-cyan-400 transition-all duration-200"
-                  aria-label={link.label}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="text-sm font-medium">{link.label}</span>
-                </a>
-              );
-            })}
+          <div className="flex gap-4 mb-8">
+            {footerLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                target={link.label === 'Resume' ? '_self' : '_blank'}
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700 transition-all group"
+                aria-label={link.label}
+              >
+                <link.icon className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+              </a>
+            ))}
           </div>
 
-          {/* Divider */}
-          <div className="w-full max-w-md h-px bg-slate-800 mb-8" />
-
           {/* Copyright */}
-          <div className="text-center space-y-3">
-            <p className="text-gray-500 text-sm">
-              Open to internships & graduate roles
-            </p>
-            <p className="text-gray-500 text-xs flex items-center justify-center gap-1">
-              Built with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> using React & Tailwind CSS
+          <div className="text-center">
+            <p className="text-gray-400 text-sm flex items-center gap-2">
+              Made with <Heart className="w-4 h-4 text-red-500" /> by Prem B
             </p>
           </div>
         </div>

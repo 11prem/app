@@ -17,13 +17,13 @@ const AnimatedBackground = () => {
           gyroControls: false,
           minHeight: 200.00,
           minWidth: 200.00,
-          scale: isMobile ? 0.6 : 1.00,
-          scaleMobile: 0.6,
+          scale: isMobile ? 0.5 : 0.8,
+          scaleMobile: 0.5,
           color: 0x02d3e6,
           backgroundColor: 0x0a192f,
-          points: isMobile ? 6.00 : 12.00, // Reduce points on mobile
-          maxDistance: isMobile ? 18.00 : 28.00, // Reduce distance on mobile
-          spacing: isMobile ? 20.00 : 15.00,
+          points: isMobile ? 7.00 : 10.00,  // Reduced from 6/12 - LESS DENSE
+          maxDistance: isMobile ? 15.00 : 25.00,  // Reduced from 18/28 - FEWER CONNECTIONS
+          spacing: isMobile ? 25.00 : 20.00,  // Increased from 20/15 - MORE SPACE
           showDots: false
         });
       } else {
